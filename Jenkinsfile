@@ -1,9 +1,9 @@
 pipeline {
 	environment {
-    registry = "gustavoapolinario/docker-test"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-    }
+    		registry = "gustavoapolinario/docker-test"
+    		registryCredential = 'dockerhub'
+    		dockerImage = ''
+    	}
 	agent any
 	options {
 		withAWS(region:'us-east-2', credentials:'aws-static')
@@ -26,13 +26,14 @@ pipeline {
 				dockerImage = docker.build registry + ":$BUILD_NUMBER"
 				}
 			}
+		}
 		stage('Deploy Image') {
-      		steps{
-         		script {
-            	docker.withRegistry( '', registryCredential ) {
-            	dockerImage.push()
-          		}
-        	}
-      	}
-    }
+      			steps{
+         			script {
+            			docker.withRegistry( '', registryCredential )
+            			dockerImage.push()
+          			}
+        		}
+      		}
+   	 }
 }
