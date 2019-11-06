@@ -1,4 +1,9 @@
 pipeline {
+	environment {
+    registry = "gustavoapolinario/docker-test"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+    }
 	agent any
 	options {
 		withAWS(region:'us-east-2', credentials:'aws-static')
@@ -12,12 +17,22 @@ pipeline {
 		stage('Upload to AWS'){
 			steps{
 				sh 'echo "Hello World"'
-				sh'''
-					echo "Multiline shell steps works too"
-					ls -lah
-				'''
 				s3Upload(file:'index.html', bucket:'project3test', path:'/home/ubuntu/index.html')
 			}
 		}
-	}
+		stage('Building image') {
+			steps{
+				script {
+				dockerImage = docker.build registry + ":$BUILD_NUMBER"
+				}
+			}
+		stage('Deploy Image') {
+      		steps{
+         		script {
+            	docker.withRegistry( '', registryCredential ) {
+            	dockerImage.push()
+          		}
+        	}
+      	}
+    }
 }
