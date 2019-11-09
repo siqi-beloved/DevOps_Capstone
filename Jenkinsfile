@@ -21,9 +21,8 @@ pipeline {
     stage('Deploy Image') {
       steps {
         script {
-          dockerImage.push()
+          docker push "${dockerImage}:${BUILD_NUMBER}"
         }
-
       }
     }
     stage('Build Container') {
