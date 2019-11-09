@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: flask-backend-deployment
+  name: siqiDevOpsCapstoneCluster
 spec:
   replicas: 2
   strategy:
@@ -12,12 +12,12 @@ spec:
   template:
     metadata:
       labels:
-        app: flask-backend
+        run: siqili/capstone：0.1 . 
     spec:
       containers:
-        - name: flask-app
+        - name: siqiDevOpsCapstoneCluster
           imagePullPolicy: Always
-          image: siqili/capstone
+          image: siqili/capstone：0.1 .
           resources:
             requests:
               cpu: "50m"
@@ -25,19 +25,6 @@ spec:
             limits:
               cpu: "500m"
               memory: "128Mi"
-          env:
-            - name: SERVICE_POSTGRES_SERVICE_HOST
-              value: service-postgres.default.svc.cluster.local
-            - name: POSTGRES_DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: user
-            - name: POSTGRES_DB_PSW
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: password
           ports:
             - containerPort: 5000
           readinessProbe:

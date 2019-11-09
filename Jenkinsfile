@@ -56,11 +56,13 @@ pipeline {
       }
     }
     stage('Deploy kubenetes'){
-	steps{
-	  script{
+	    steps{
+	      script{
+          withAWS(credentials: 'siqijenkinsawscredential', region: 'us-east-2') {
                sh "./Deploy_kubenetes.sh"
-            }
-	}
+          }
+        }
+	    }
     }
   }
 }
