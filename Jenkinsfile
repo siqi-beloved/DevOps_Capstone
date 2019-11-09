@@ -21,7 +21,8 @@ pipeline {
     stage('Deploy Image') {
       steps {
         script{
-          docker push --disable-content-trust dockerImage
+           echo "Docker ID and Image: $dockerpath"
+            docker push siqili/capstone:BUILD_NUMBER
         }
       }
     }
