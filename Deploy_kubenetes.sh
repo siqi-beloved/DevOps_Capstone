@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Creating the flask deployment and service..."
+echo "Create a Deployment based on the YAML file"
 
-kubectl create -f ./kubernetes/flask-deployment.yaml
-kubectl create -f ./kubernetes/flask-service.yaml
+
+kubectl apply -f ./kubernetes/k8s-deployment.yaml

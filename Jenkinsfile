@@ -40,13 +40,6 @@ pipeline {
         }
       }
     }
-
-    stage('Remove Docker Image') {
-      steps{
-        sh "docker rmi $registry$semicolon$tag"
-      }
-    }
-
     // ec2 for jenkins is in us-east-2, so here we create eks also in same region
     stage('Create EKS cluster') {
       steps {
