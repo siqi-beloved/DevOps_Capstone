@@ -29,7 +29,7 @@ pipeline {
       steps {
         script{
            echo "Docker ID and Image: $dockerpath"
-            docker push siqili/capstone:BUILD_NUMBER
+            docker push dockerImage
         }
       }
     }
