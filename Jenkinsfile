@@ -14,9 +14,8 @@ pipeline {
     stage('Building image') {
       steps {
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":${BUILD_NUMBER}"
         }
-
       }
     }
     stage('Deploy Image') {
@@ -31,14 +30,14 @@ pipeline {
     stage('Build Container') {
       steps {
         script {
-          sh "./build_container.sh"
+          docker container create --name mywebsite "${dockerImage}:${BUILD_NUMBER}"
         }
 
       }
     }
     stage('Remove Unused docker image') {
       steps {
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        sh "docker rmi ${registry}:${BUILD_NUMBER}"
       }
     }
   }
