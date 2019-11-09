@@ -51,9 +51,10 @@ pipeline {
     stage('Create EKS cluster') {
       steps {
         withAWS(credentials: 'siqijenkinsawscredential', region: 'us-east-2') {
-	        sh 'aws eks --region us-east-1 update-kubeconfig --name siqiDevOpsCapstoneCluster'
+	        sh 'aws eks --region us-east-2 update-kubeconfig --name siqiDevOpsCapstoneCluster'
         }
       }
     }
+
   }
 }
