@@ -41,19 +41,13 @@ pipeline {
       }
     }
     // ec2 for jenkins is in us-east-2, so here we create eks also in same region
-    stage('Create EKS cluster') {
-      steps {
-        withAWS(credentials: 'siqijenkinsawscredential', region: 'us-east-2') {
-	        sh 'aws eks --region us-east-2 update-kubeconfig --name siqiDevOpsCapstoneCluster'
-      }
-     }
-    }
     stage('Deploy kubenetes'){
+      environment {
+                awscredentials = 'siqijenkinsawscredential'
+            }
 	    steps{
 	      script{
-          withAWS(credentials: 'siqijenkinsawscredential', region: 'us-east-2') {
                sh "./Deploy_kubenetes.sh"
-          }
         }
 	    }
     }
