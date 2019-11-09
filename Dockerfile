@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 FROM nginx:alpine
 #:1.17-alpine
 
@@ -8,3 +9,12 @@ FROM nginx:alpine
 COPY capstone /usr/share/nginx/html
 
 #COPY conf /etc/nginx
+=======
+FROM nginx
+
+COPY capstone /usr/share/nginx/html/
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+>>>>>>> Stashed changes
