@@ -6,12 +6,12 @@ pipeline {
         sh 'tidy -q -e capstone/*.html'
       }
     }
-    #stage('Upload to AWS') {
-     # steps {
-      #  sh 'echo "Hello World"'
-       # s3Upload(file: 'index.html', bucket: 'project3test', path: '/home/ubuntu/index.html')
-      #}
-    #}
+    // stage('Upload to AWS') {
+    //   steps {
+    //     sh 'echo "Hello World"'
+    //     s3Upload(file: 'index.html', bucket: 'project3test', path: '/home/ubuntu/index.html')
+    //   }
+    // }
     stage('Building image') {
       steps {
         withCredentials([[$class:'UsernamePasswordMultiBinding', credentialsId:'dockerhub',usernameVariable:'Docker_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
