@@ -46,5 +46,14 @@ pipeline {
         sh "docker rmi $registry$semicolon$tag"
       }
     }
+
+    // ec2 for jenkins is in us-east-2, so here we create eks also in same region
+    stage('') {
+      steps {
+        withAWS(credentials: 'aws-static', region: 'us-east-2') {
+	        sh 'aws eks --region us-east-1 update-kubeconfig --name siqiDevOpsCapstoneCluster'
+        }
+      }
+    }
   }
 }
