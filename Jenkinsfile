@@ -21,9 +21,7 @@ pipeline {
     stage('Deploy Image') {
       steps {
         script{
-          docker.withRegistry( ' ', registryCredential ) {
-            dockerImage.push()
-          }
+          docker push siqili/capstone:"${BUILD_NUMBER}"
         }
       }
     }
