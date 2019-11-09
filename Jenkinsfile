@@ -6,7 +6,7 @@ pipeline {
         sh 'tidy -q -e capstone/*.html'
       }
     }
-    
+
     /*
     stage('Upload to AWS') {
       steps {
@@ -34,8 +34,10 @@ pipeline {
         }
 
       }
-    }
+    }*/
   }
+  
+  /*
   environment {
     registry = 'gustavoapolinario/docker-test'
     registryCredential = 'dockerhub'
