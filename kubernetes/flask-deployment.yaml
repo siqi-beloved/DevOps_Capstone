@@ -17,7 +17,7 @@ spec:
       containers:
         - name: flask-app
           imagePullPolicy: Always
-          image: pmbrull/k8-flask-api
+          image: siqili/capstone
           resources:
             requests:
               cpu: "50m"
