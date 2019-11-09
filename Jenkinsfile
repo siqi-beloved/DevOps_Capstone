@@ -1,9 +1,4 @@
 pipeline {
-  environment {
-    registry = 'siqili/capstone'
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-  }
   agent any
   stages {
     stage('Cloning Git') {
@@ -18,30 +13,38 @@ pipeline {
     }
     stage('Building image') {
       steps {
-        script{
+        script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
-        }
+
       }
+    }
     stage('Deploy Image') {
       steps {
         script {
-          docker.withRegistry( '', registryCredential ) 
+          docker.withRegistry( '', registryCredential )
           dockerImage.push()
         }
+
       }
     }
-    stage('Build Container'){
-         steps{
-            script{
-               sh "./build_container.sh"
-            }
-         }
+    stage('Build Container') {
+      steps {
+        script {
+          sh "./build_container.sh"
+        }
+
       }
+    }
     stage('Remove Unused docker image') {
-      steps{
+      steps {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
+  }
+  environment {
+    registry = 'siqili/capstone'
+    registryCredential = 'dockerhub'
+    dockerImage = ''
   }
 }
