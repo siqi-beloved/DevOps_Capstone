@@ -47,7 +47,10 @@ pipeline {
             }
 	    steps{
 	      script{
-               sh "./Deploy_kubenetes.sh"
+          docker pull siqili/capstone:0.1
+          kubectl apply -f ./kubernetes/k8s-deployment.yaml
+          kubectl port-forward deployment/kubernetes-capstone 3000:80
+           kubectl get pods
         }
 	    }
     }

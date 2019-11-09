@@ -1,7 +1,7 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: capstone
+  name: kubernetes-capstone
 spec:
   replicas: 2
   strategy:
@@ -15,7 +15,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: capstone
+      - name: kubernetes-capstone
         image: siqili/capstone: 0.1 .
         ports:
         - containerPort: 80
