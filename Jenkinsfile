@@ -31,6 +31,13 @@ pipeline {
         }
       }
     }
+    stage('Build Container'){
+         steps{
+            script{
+               sh "./build_container.sh"
+            }
+         }
+      }
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
