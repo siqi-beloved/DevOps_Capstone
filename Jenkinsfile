@@ -55,6 +55,12 @@ pipeline {
         }
       }
     }
-
+    stage('Deploy kubenetes'){
+	steps{
+	  script{
+               sh "./Deploy_kubenetes.sh"
+            }
+	}
+    }
   }
 }
