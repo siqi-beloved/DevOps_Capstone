@@ -21,7 +21,7 @@ pipeline {
     stage('Deploy Image') {
       steps {
         script{
-          docker.withRegistry( 'https://hub.docker.com/repository/docker/siqili/capstone', registryCredential ) {
+          docker.withRegistry( ' ', registryCredential ) {
             dockerImage.push()
           }
         }
