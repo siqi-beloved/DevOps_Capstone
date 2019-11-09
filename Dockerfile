@@ -1,9 +1,10 @@
-FROM nginx:1.17-alpine
+FROM nginx:alpine
+#:1.17-alpine
 
-RUN rm /etc/nginx/conf.d/default.conf
+#RUN rm /etc/nginx/conf.d/default.conf
 
-RUN rm /etc/nginx/conf.d/examplessl.conf
+#RUN rm /etc/nginx/conf.d/examplessl.conf
 
 COPY capstone /usr/share/nginx/html
 
-COPY conf /etc/nginx
+#COPY conf /etc/nginx
