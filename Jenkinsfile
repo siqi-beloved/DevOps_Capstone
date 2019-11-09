@@ -41,7 +41,7 @@ pipeline {
       }
     }
 
-    stage('Remove Unused docker image') {
+    stage('Remove Docker Image') {
       steps{
         sh "docker rmi $registry$semicolon$tag"
       }
