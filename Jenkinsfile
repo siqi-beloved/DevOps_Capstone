@@ -41,6 +41,7 @@ pipeline {
       }
     }
     // ec2 for jenkins is in us-east-2, so here we create eks also in same region
+    /*
     stage('Deploy kubenetes'){
       environment {
         awscredentials = 'siqijenkinsawscredential'
@@ -49,10 +50,12 @@ pipeline {
 	      script{
           kubectl apply -f ./kubernetes/k8s-deployment.yaml
           kubectl port-forward deployment/kubernetes-capstone 3000:80
-           kubectl get pods
+          kubectl get pods
         }
 	    }
-    }
-  }
+    }*/
   
+  
+  }
+
 }
