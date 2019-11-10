@@ -43,8 +43,8 @@ pipeline {
     // ec2 for jenkins is in us-east-2, so here we create eks also in same region
     stage('Deploy kubenetes'){
       environment {
-                awscredentials = 'siqijenkinsawscredential'
-            }
+        awscredentials = 'siqijenkinsawscredential'
+      }
 	    steps{
 	      script{
           kubectl apply -f ./kubernetes/k8s-deployment.yaml
@@ -54,4 +54,5 @@ pipeline {
 	    }
     }
   }
+  
 }
