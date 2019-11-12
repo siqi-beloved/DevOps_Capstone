@@ -5,8 +5,9 @@
 
  3. build Jenkins pipelines for linting html file, building docker image and uploading docker image to Dockerhub
 
- 4. build kubenetes container on AWS with eksctl based on the image on dockerhub
+ 4. build kubenetes container on AWS with eksctl_cluster.sh based on the image on dockerhub
 
- 5. serve our website on AWS kubenetes with rolling deployment
+ 5. serve our website on AWS kubenetes with rolling deployment with deploy to cluster.sh
+ 
  
 
