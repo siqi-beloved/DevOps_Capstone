@@ -41,21 +41,22 @@ pipeline {
       }
     }
     // ec2 for jenkins is in us-east-2, so here we create eks also in same region
-    /*
     stage('Deploy kubenetes'){
-      environment {
-        awscredentials = 'siqijenkinsawscredential'
-      }
 	    steps{
 	      script{
-          kubectl apply -f ./kubernetes/k8s-deployment.yaml
-          kubectl port-forward deployment/kubernetes-capstone 3000:80
-          kubectl get pods
-        }
-	    }
-    }*/
-  
-  
+          eksctl create cluster \
+> --name siqi-cluster \
+> --version 1.14 \
+> --region us-east-2 \
+> --nodegroup-name siqi-nodes \
+> --node-type t2.micro \
+> --nodes 2 \
+> --nodes-min 1 \
+> --nodes-max 2 \
+> --node-ami auto
+        	}
+	}
+    } 
   }
 
 }
