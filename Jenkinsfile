@@ -25,25 +25,19 @@ pipeline {
 
       }
     }
-    stage('Remove Docker Image') {
-      steps {
-        sh "docker rmi $registry$semicolon$tag"
-      }
-    }
     stage('Create EKS cluster') {
       steps {
         withAWS(credentials: 'siqijenkinsawscredential', region: 'us-east-2') {
-          sh 'aws eks --region us-east-2 update-kubeconfig --name siqiDevOpsCapstoneCluster'
-        }
-
-      }
-    }
-    stage('Deploy kubenetes') {
-      steps {
-        script {
-          withAWS(credentials: 'siqijenkinsawscredential', region: 'us-east-2') {
-            sh "./Deploy_kubenetes.sh"
-          }
+          sh '''eksctl create cluster \\
+> --name siqi-cluster \\
+> --version 1.14 \\
+> --region us-east-2 \\
+> --nodegroup-name siqi-nodes \\
+> --node-type t2.micro \\
+> --nodes 2 \\
+> --nodes-min 1 \\
+> --nodes-max 2 \\
+> --node-ami auto'''
         }
 
       }
