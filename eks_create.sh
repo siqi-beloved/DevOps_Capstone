@@ -1,10 +1,10 @@
 eksctl create cluster \
---name siqi-prod \
+--name siqi-test \
 --version 1.14 \
 --region us-east-2 \
---nodegroup-name siqi-prod-workers \
+--nodegroup-name siqi-nodes \
 --node-type t2.micro \
---nodes 1 \
+--nodes 2 \
 --nodes-min 1 \
 --nodes-max 2 \
 --node-ami auto
