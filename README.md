@@ -1,4 +1,4 @@
-##Improvements based on your Feedbacks:
+## Improvements based on your Feedbacks:
 
 1. The project takes a Dockerfile and creates a Docker container in the pipeline.
 -Refer to the image Build Docker Image in Pipeline.jpg and Push Docker Image in Pipeline.jpg
