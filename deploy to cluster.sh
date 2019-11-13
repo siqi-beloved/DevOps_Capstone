@@ -8,4 +8,4 @@ docker pull siqili/capstone:0.1
 #create deplyments
 kubectl apply -f kubernetes/deployment.yaml
 #get deployment status
-Kubectl get deployments
+kubectl get deployments
