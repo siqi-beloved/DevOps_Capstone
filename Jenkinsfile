@@ -25,19 +25,10 @@ pipeline {
 
       }
     }
-    stage('Create EKS cluster') {
+    stage('Create Docker Container') {
       steps {
         withAWS(credentials: 'siqijenkinsawscredential', region: 'us-east-2') {
-          sh '''eksctl create cluster \\
-> --name siqi-cluster \\
-> --version 1.14 \\
-> --region us-east-2 \\
-> --nodegroup-name siqi-nodes \\
-> --node-type t2.micro \\
-> --nodes 2 \\
-> --nodes-min 1 \\
-> --nodes-max 2 \\
-> --node-ami auto'''
+          sh 'kubectl create deployment test --image=siqili/capstone:0.1'
         }
 
       }
