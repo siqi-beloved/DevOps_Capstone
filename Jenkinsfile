@@ -40,24 +40,19 @@ pipeline {
         }
       }
     }
-    // ec2 for jenkins is in us-east-2, so here we create eks also in same region
-    /*stage('Deploy kubenetes'){
+
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$tag"
+      }
+    }
+
+    stage('Deploy kubenetes'){
 	    steps{
-	      script{
-          eksctl create cluster \
-> --name siqi-cluster \
-> --version 1.14 \
-> --region us-east-2 \
-> --nodegroup-name siqi-nodes \
-> --node-type t2.micro \
-> --nodes 2 \
-> --nodes-min 1 \
-> --nodes-max 2 \
-> --node-ami auto
-        	}
-	}
+        sh "kubectl apply -f ./kubernetes"
+	    }
     } 
-    */
+
   }
 
 }
