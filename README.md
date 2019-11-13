@@ -9,7 +9,7 @@
    See picture: CloudFormation_stack
 
 4. Please explain in detail how the rolling deployment works in kubernetes in your project and how did you implement it. You can create a list of the events that happened from the start to the end of a rolling deployment.
-Rolling Deployment is implemented by these lines in deployment.yaml file:
+   Rolling Deployment is implemented by these lines in deployment.yaml file:
     spec:
       replicas: 3
       selector:
