@@ -8,4 +8,4 @@ docker pull siqili/capstone:0.1
 #create deplyments
 kubectl create deployment nginx --image=siqili/capstone:0.1
 #get deployment status
-Kbectl get deployments
+Kubectl get deployments
