@@ -2,13 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: capstone
+    app: capstone
   name: capstone-deploy
 spec:
   replicas: 3
   selector:
     matchLabels:
-      run: capstone
+      app: capstone
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,8 +19,10 @@ spec:
   template:
     metadata:
       labels:
-        run: capstone
+        app: capstone
     spec:
       containers:
       - image: siqili/capstone:0.1
         name: capstone
+        ports:
+        - containerPort: 80
