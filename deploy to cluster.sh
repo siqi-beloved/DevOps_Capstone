@@ -6,6 +6,6 @@ kubectl get nodes
 #pull image from dockerhub
 docker pull siqili/capstone:0.1
 #create deplyments
-kubectl create deployment nginx --image=siqili/capstone:0.1
+kubectl apply -f kubernetes/deployment.yaml
 #get deployment status
 Kubectl get deployments
